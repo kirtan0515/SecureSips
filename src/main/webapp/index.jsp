@@ -13,6 +13,6 @@
         <button><a href="register">Register</a></button>
     </div>
 </div>
-<%@include file="footer.jsp" %>
+<%--<%@include file="footer.jsp" %>--%>
 </body>
 </html>
