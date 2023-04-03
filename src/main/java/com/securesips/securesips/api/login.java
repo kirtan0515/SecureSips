@@ -41,6 +41,7 @@ public class login extends HttpServlet {
             }
             HttpSession session = request.getSession();
             session.setAttribute("user", userRecord);
+            session.setAttribute("userName", userRecord.getFullname());
             System.out.println("Login (POST) : " + userRecord.getId());
             response.sendRedirect("dash");
 

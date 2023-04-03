@@ -1,4 +1,13 @@
-body
-{
-    background: antiquewhite;
+.form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.form .btn {
+    margin: 3%;
+    padding: 3%;
+}
+
+#register-btn{
+    background: darkslategray;
 }

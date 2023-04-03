@@ -14,20 +14,15 @@
 
 <%-- Body--%>
 <body>
-<div class="login-box">
-    <h1>Login</h1>
+<div class="form">
+    <h2>Login to your account</h2>
     <form action="login" method="post">
-        <label class="email" for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-
-        <label class="password" for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-
-        <button id="login" type="submit">Login</button>
+        <input type="email" title="email" name="email" placeholder="name@email.com" required/>
+        <input type="password" title="username" placeholder="password" name="password"/>
+        <button type="submit" class="btn">Login</button>
+        <a class="forgot" href="register">Don't have an account?</a>
     </form>
-    <label class="register">Need an account?<a href="register"> Sign up!</a></label>
-    <button><a href="index">Go To Home</a></button>
-</div>
+</div><!--end log form -->
 
 <%--<%@include file="footer.jsp" %>--%>
 </body>

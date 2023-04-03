@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="./assets/css/index.css">
 </head>
 <body>
-<div class="main">
-    <div class="btn-holder">
-        <button><a href="login">Login</a></button>
-        <button><a href="register">Register</a></button>
-    </div>
-</div>
+<div class="form">
+    <h2>Secure Sips</h2>
+    <a href="login" class="btn">Login</a>
+    <a href="register" id="register-btn" class="btn">Register</a>
+</div><!--end log form -->
 <%--<%@include file="footer.jsp" %>--%>
 </body>
 </html>
