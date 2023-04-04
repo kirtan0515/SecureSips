@@ -5,7 +5,7 @@
     <%@include file="header.jsp" %>
     <link rel="stylesheet" href="./assets/css/SHARED.css">
     <link rel="stylesheet" href="./assets/css/register.css">
-    <title>Secure Sips</title>
+    <title>Secure Sips - Register</title>
 </head>
 <body>
 <div class="form">

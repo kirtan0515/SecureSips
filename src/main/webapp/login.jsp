@@ -5,7 +5,7 @@
     <%@include file="header.jsp" %>
     <link rel="stylesheet" href="./assets/css/SHARED.css">
     <link rel="stylesheet" href="./assets/css/login.css">
-    <title>Secure Sips</title>
+    <title>Secure Sips - Login</title>
 </head>
 
 <%-- Alert Code (has to be on every page)--%>

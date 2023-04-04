@@ -3,6 +3,7 @@
 <html>
 <head>
     <%@include file="header.jsp" %>
+    <title>Secure Sips</title>
     <link rel="stylesheet" href="./assets/css/SHARED.css">
     <link rel="stylesheet" href="./assets/css/index.css">
 </head>

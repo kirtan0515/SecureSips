@@ -6,7 +6,7 @@
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SecureSips</title>
+<%--<title>SecureSips</title>--%>
 <link href="./ROOT.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="icon" href="./assets/images/coffee.jpeg" type="image/icon type"/>
