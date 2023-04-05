@@ -26,6 +26,7 @@ public class register extends HttpServlet {
         String fullName = request.getParameter("fullname");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
         User user = new User(fullName, email, password);
 
         try {
