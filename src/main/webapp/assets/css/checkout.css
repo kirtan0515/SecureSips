@@ -1,0 +1,88 @@
+/* Global styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f6f6f6;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.shipping-info,
+.payment {
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 4px;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 576px) {
+    .shipping-info,
+    .payment {
+        width: calc(50% - 10px);
+    }
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="month"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="month"]:focus {
+    outline: none;
+    border-color: #4285f4;
+}
+
+button[type="submit"] {
+    display: inline-block;
+    background-color: #4285f4;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #2266d2;
+}

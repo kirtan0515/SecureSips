@@ -2,6 +2,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: "Roboto", sans-serif;
 }
 
 .logo {
@@ -51,21 +52,23 @@ body {
     display: inline;
 }
 
-.navigation-bar a:hover {
-    color: #23cad5;
-}
-
-.navigation-bar li a {
-    color: antiquewhite;
+.navigation-bar a {
+    color: #ffffff;
     font-size: 16px;
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-family: "Roboto", sans-serif;
     text-decoration: none;
     line-height: 70px;
     padding: 5px 15px;
-    opacity: 0.7;
+    transition: 0.3s;
+    border-radius: 3px;
+    opacity: 0.8;
 }
 
-
+.navigation-bar a:hover {
+    color: #23cad5;
+    background-color: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+}
 
 #menu {
     float: right;

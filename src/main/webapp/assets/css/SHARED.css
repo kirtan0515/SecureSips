@@ -1,5 +1,5 @@
 /* Importing Google Fonts */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,300,600');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans:400,300,600|Roboto:400,500,700&display=swap');
 
 /* Global styles */
 * {
@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
     background: url('http://farm8.staticflickr.com/7064/6858179818_5d652f531c_h.jpg') no-repeat center center fixed;
     background-size: cover;
 }
@@ -23,6 +23,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
 }
 
 @media (max-width: 40em) {
@@ -42,17 +43,17 @@ body {
 }
 
 .form h2 {
-    color: #5d5d5d;
+    color: #ffffff;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1.35em;
     display: block;
     background: #2a2a2a;
     text-transform: uppercase;
     padding: 0.75em 1.5em;
-    border: 1px solid #1d1d1d;
+    border-radius: 8px 8px 0 0;
     margin: 0;
-    font-weight: 200;
-    box-shadow: inset 0px 1px 1px rgba(255, 255, 255, 0.05);
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .form input {
@@ -62,22 +63,28 @@ body {
     margin-bottom: 2em;
     padding: 0.5em 0;
     border: none;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 2px solid #eaeaea;
     color: #757575;
+    font-weight: 500;
+    font-size: 1rem;
 }
 
 .form input:focus {
+    border-bottom: 2px solid #23cad5;
     outline: none;
 }
 
 .form .btn {
     display: inline-block;
     background: #1fb5bf;
-    border: 1px solid #1ba0a9;
+    border: none;
+    border-radius: 5px;
     padding: 0.5em 2em;
     color: #fff;
-    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.2);
+    font-weight: 700;
     text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s;
 }
 
 .form .btn:hover {
@@ -103,6 +110,7 @@ body {
     margin: 0;
     padding: 0;
     float: right;
+    transition: color 0.3s;
 }
 
 .form .forgot:hover {
