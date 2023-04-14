@@ -7,7 +7,11 @@
 </head>
 <body>
 <h1>Checkout</h1>
-
+<div class="back-to-dash">
+    <a href="dash">
+        <img class="logo-small" src="./assets/images/bb.png" alt="Logo"> <!-- Replace with your own logo image file -->
+    </a>
+</div>
 <div class="container">
     <div class="shipping-info">
         <h2>Shipping Information</h2>

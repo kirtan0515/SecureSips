@@ -6,10 +6,10 @@ public class Product {
     private String name;
     private String description;
     private double price;
-    private int quantity;
-    private byte[] imageUrl;
+    private double quantity;
+    private String imageUrl;
 
-    public Product(int id, int buyerId, String name, String description, double price, int quantity, byte[] imageUrl) {
+    public Product(int id, int buyerId, String name, String description, double price, double quantity, String imageUrl) {
         this.id = id;
         this.buyerId = buyerId;
         this.name = name;
@@ -19,11 +19,11 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public Product(int buyerId, String name, String description, double price, int quantity, byte[] imageUrl) {
+    public Product(int buyerId, String name, String description, String price, double quantity, String imageUrl) {
         this.buyerId = buyerId;
         this.name = name;
         this.description = description;
-        this.price = price;
+        this.price = Double.parseDouble(price);
         this.quantity = quantity;
         this.imageUrl = imageUrl;
     }
@@ -68,19 +68,19 @@ public class Product {
         this.price = price;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
-    public byte[] getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(byte[] imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 }

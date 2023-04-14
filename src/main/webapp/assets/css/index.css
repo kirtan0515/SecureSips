@@ -11,3 +11,14 @@
 #register-btn{
     background: darkslategray;
 }
+#logo1 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* or whatever width you want */
+    height: 80px; /* Change the value to adjust the height of the logo */
+    margin-top: 20px; /* Change the value to adjust the margin from the top */
+}
+
+
