@@ -3,15 +3,16 @@ package com.securesips.securesips.entity;
 public class Product {
     private int id;
     private int buyerId;
+    private String category;
     private String name;
     private String description;
     private double price;
-    private double quantity;
-    private String imageUrl;
+    private int quantity;
+    private byte[] imageUrl;
 
-    public Product(int id, int buyerId, String name, String description, double price, double quantity, String imageUrl) {
-        this.id = id;
-        this.buyerId = buyerId;
+
+    public Product(String category, String name, String description, double price, int quantity, byte[] imageUrl) {
+        this.category = category;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -19,13 +20,8 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public Product(int buyerId, String name, String description, String price, double quantity, String imageUrl) {
-        this.buyerId = buyerId;
-        this.name = name;
-        this.description = description;
-        this.price = Double.parseDouble(price);
-        this.quantity = quantity;
-        this.imageUrl = imageUrl;
+    public Product() {
+
     }
 
     public int getId() {
@@ -68,19 +64,27 @@ public class Product {
         this.price = price;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String getImageUrl() {
+    public byte[] getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(byte[] imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

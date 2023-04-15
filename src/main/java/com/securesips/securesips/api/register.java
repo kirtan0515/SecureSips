@@ -1,7 +1,6 @@
 package com.securesips.securesips.api;
 
 import com.securesips.securesips.dao.UserDAO;
-import com.securesips.securesips.dao.UserDAO;
 import com.securesips.securesips.entity.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,6 +30,7 @@ public class register extends HttpServlet {
 
         try {
             UserDAO.registerUser(user);
+            System.out.println("Registration done - " + email);
             response.sendRedirect("login.jsp");
         } catch (ClassNotFoundException | NoSuchAlgorithmException | SQLException ex) {
             throw new ServletException(ex);

@@ -43,6 +43,7 @@ public class login extends HttpServlet {
             session.setAttribute("user", userRecord);
             session.setAttribute("userName", userRecord.getFullname());
             System.out.println("Login (POST) : " + userRecord.getId());
+            System.out.println("Login Success - " + email);
             response.sendRedirect("dash");
 
         } catch (SQLException e) {

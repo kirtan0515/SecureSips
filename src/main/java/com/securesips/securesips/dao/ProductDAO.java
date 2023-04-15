@@ -2,6 +2,7 @@ package com.securesips.securesips.dao;
 
 import com.securesips.securesips.entity.Product;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +11,12 @@ import java.util.Properties;
 
 public class ProductDAO {
     protected static Properties props;
+    private static final String INSERT_PRODUCT_SQL = "INSERT INTO products (name, category, description, price, quantity, imageUrl) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_PRODUCT_SQL = "UPDATE products SET name=?, category=?, description=?, price=?, quantity=?, imageUrl=? WHERE id=?";
+    private static final String DELETE_PRODUCT_SQL = "DELETE FROM products WHERE id=?";
+    private static final String GET_PRODUCT_SQL = "SELECT * FROM products WHERE id=?";
+    private static final String GET_ALL_PRODUCTS_SQL = "SELECT * FROM products";
+
 
     protected static Connection getConnection() {
         props = new Properties();
@@ -26,92 +33,90 @@ public class ProductDAO {
         return currentCon;
     }
 
-    // Create a product
-    public void createProduct(Product product) {
-        String query = "INSERT INTO products (buyerId, name, description, price, quantity, imageUrl) VALUES (?, ?, ?, ?, ?, ?)";
+    public static void insertProduct(Product product) throws SQLException {
 
-        try (Connection connection = getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(query)) {
-
-            pstmt.setInt(1, product.getBuyerId());
-            pstmt.setString(2, product.getName());
-            pstmt.setString(3, product.getDescription());
-            pstmt.setDouble(4, product.getPrice());
-            pstmt.setInt(5, (int) product.getQuantity());
-            pstmt.setString(6, product.getImageUrl());
-
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error creating product: " + e);
-            throw new RuntimeException(e);
-        }
+        System.out.println("ProductDAO (insertProduct): requested");
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PRODUCT_SQL);
+        preparedStatement.setString(1, product.getName());
+        preparedStatement.setString(2, product.getCategory());
+        preparedStatement.setString(3, product.getDescription());
+        preparedStatement.setDouble(4, product.getPrice());
+        preparedStatement.setInt(5, product.getQuantity());
+        preparedStatement.setBlob(6, new ByteArrayInputStream(product.getImageUrl()));
+        preparedStatement.executeUpdate();
+        System.out.println("ProductDAO (insertProduct): product successfully added");
     }
 
-    // Update product
-    public void updateProduct(Product product) {
-        String query = "UPDATE products SET buyerId=?, name=?, description=?, price=?, quantity=?, imageUrl=? WHERE id=?";
+    public static void updateProduct(Product product) throws SQLException {
+        System.out.println("ProductDAO (updateProduct): requested");
+        Connection connection = getConnection();
 
-        try (Connection connection = getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(query)) {
+        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_SQL);
+        preparedStatement.setString(1, product.getName());
+        preparedStatement.setString(2, product.getCategory());
+        preparedStatement.setString(3, product.getDescription());
+        preparedStatement.setDouble(4, product.getPrice());
+        preparedStatement.setInt(5, product.getQuantity());
+        preparedStatement.setBlob(6, new ByteArrayInputStream(product.getImageUrl()));
+        preparedStatement.setInt(7, product.getId());
+        preparedStatement.executeUpdate();
+        System.out.println("ProductDAO (updateProduct): product updated successfully");
 
-            pstmt.setInt(1, product.getBuyerId());
-            pstmt.setString(2, product.getName());
-            pstmt.setString(3, product.getDescription());
-            pstmt.setDouble(4, product.getPrice());
-            pstmt.setInt(5, (int) product.getQuantity());
-            pstmt.setString(6, product.getImageUrl());
-            pstmt.setInt(7, product.getId());
-
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error updating product: " + e);
-            throw new RuntimeException(e);
-        }
     }
 
-    // Delete product
-    public void deleteProduct(int productId) {
-        String query = "DELETE FROM products WHERE id=?";
+    public static void deleteProduct(int id) throws SQLException {
+        System.out.println("ProductDAO (deleteProduct): requested");
+        Connection connection = getConnection();
 
-        try (Connection connection = getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(query)) {
-
-            pstmt.setInt(1, productId);
-
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Error deleting product: " + e);
-            throw new RuntimeException(e);
-        }
+        PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PRODUCT_SQL);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
     }
 
-    // Get Product
-    public Product getProduct(int productId) {
-        String query = "SELECT * FROM products WHERE id=?";
+    public static List<Product> getAllProducts() throws SQLException {
+        System.out.println("ProductDAO (getAllProducts): requested");
+        Connection connection = getConnection();
 
-        try (Connection connection = getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(query)) {
+        PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_PRODUCTS_SQL);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<Product> productList = new ArrayList<>();
 
-            pstmt.setInt(1, productId);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                int id = rs.getInt("id");
-                int buyerId = rs.getInt("buyerId");
-                String name = rs.getString("name");
-                String description = rs.getString("description");
-                double price = rs.getDouble("price");
-                double quantity = rs.getDouble("quantity");
-                String imageUrl = rs.getString("imageUrl");
-
-                return new Product(id, buyerId, name, description, price, quantity, imageUrl);
-            } else {
-                return null;
-            }
-        } catch (SQLException e) {
-            System.out.println("Error deleting product: " + e);
-            throw new RuntimeException(e);
+        while (resultSet.next()) {
+            Product product = new Product();
+            product.setId(resultSet.getInt("id"));
+            product.setName(resultSet.getString("name"));
+            product.setCategory(resultSet.getString("category"));
+            product.setDescription(resultSet.getString("description"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setQuantity(resultSet.getInt("quantity"));
+            product.setImageUrl(resultSet.getBytes("imageUrl"));
+            productList.add(product);
         }
+        return productList;
     }
 
+    public Product getProduct(int id) throws SQLException {
+        System.out.println("ProductDAO (getProduct): requested");
+        Connection connection = getConnection();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(GET_PRODUCT_SQL);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            Product product = new Product();
+
+            product.setId(resultSet.getInt("id"));
+            product.setName(resultSet.getString("name"));
+            product.setCategory(resultSet.getString("category"));
+            product.setDescription(resultSet.getString("description"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setQuantity(resultSet.getInt("quantity"));
+            product.setImageUrl(resultSet.getBytes("imageUrl"));
+            return product;
+        } else {
+            return null;
+        }
+    }
 }
