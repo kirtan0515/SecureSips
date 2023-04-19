@@ -1,5 +1,7 @@
 package com.securesips.securesips.entity;
 
+import java.util.Base64;
+
 public class Product {
     private int id;
     private int buyerId;
@@ -9,7 +11,6 @@ public class Product {
     private double price;
     private int quantity;
     private byte[] imageUrl;
-
 
     public Product(String category, String name, String description, double price, int quantity, byte[] imageUrl) {
         this.category = category;
@@ -22,6 +23,13 @@ public class Product {
 
     public Product() {
 
+    }
+
+    public String getBase64Image() {
+        if (this.imageUrl != null) {
+            return Base64.getEncoder().encodeToString(this.imageUrl);
+        }
+        return null;
     }
 
     public int getId() {

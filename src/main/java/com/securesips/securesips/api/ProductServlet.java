@@ -38,34 +38,5 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // get form data
-//        String category = request.getParameter("product-category");
-//        String name = request.getParameter("product-name");
-//        String description = request.getParameter("product-description");
-//        double price = Double.parseDouble(request.getParameter("product-price"));
-//        int quantity = Integer.parseInt(request.getParameter("product-quantity"));
-//
-//        System.out.println("Request Revieved: ");
-//        System.out.println("Category: " + category);
-//        System.out.println("Name: " + name);
-//        System.out.println("Description: " + description);
-//        System.out.println("Price: " + price);
-//        System.out.println("Quantity: " + quantity);
-//        // read the image file as a byte array
-//        Part imagePart = request.getPart("product-image");
-//        InputStream imageStream = imagePart.getInputStream();
-//        byte[] imageData = imageStream.readAllBytes();
-//
-//        Product new_product = new Product(category,name,description,price,quantity,imageData);
-//        try {
-//            ProductDAO.insertProduct(new_product);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        response.sendRedirect("productForm.jsp");
-
-
-//        response.setContentType("application/json;charset=UTF-8");
-//        response.getWriter().write("{\"status\": \"success\", \"message\": \"Product form submitted successfully!\"}");
     }
 }
