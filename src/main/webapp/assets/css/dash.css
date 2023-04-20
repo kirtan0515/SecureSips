@@ -73,6 +73,7 @@ body {
 .search-container {
     position: relative;
     margin-left: 20px;
+    order: 3;
 }
 
 #search-bar {
@@ -103,3 +104,4 @@ body {
 #menu {
     float: right;
 }
+

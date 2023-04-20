@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.UUID;
 
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
@@ -42,6 +43,9 @@ public class ManageProducts extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Get the uploaded image file
+        Part filePart = request.getPart("product-image");
+
         // get form data
         String category = request.getParameter("product-category");
         String name = request.getParameter("product-name");
@@ -50,8 +54,7 @@ public class ManageProducts extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("product-quantity"));
 
         // read the image file as a byte array
-        Part imagePart = request.getPart("product-image");
-        InputStream imageStream = imagePart.getInputStream();
+        InputStream imageStream = filePart.getInputStream();
         byte[] imageData = imageStream.readAllBytes();
 
         // Validate the product

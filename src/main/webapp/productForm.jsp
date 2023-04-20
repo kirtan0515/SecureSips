@@ -19,7 +19,7 @@
     </button>
     <h1>Product Form</h1>
 </div>
-<form action="ManageProducts" method="post" enctype="multipart/form-data">
+<form action="ManageProducts" method="post" id="addProductForm"enctype="multipart/form-data">
     <table>
         <tr>
             <td>Product Image:</td>
@@ -118,6 +118,18 @@
 <%-- For Good Looking Alerts--%>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="./alert.js"></script>
+<script>
+    document.getElementById("addProductForm").addEventListener("submit", function (e) {
+        var fileInput = document.getElementById("product-image");
+        if (fileInput.files.length > 0) {
+            var fileSize = fileInput.files[0].size; // in bytes
+            if (fileSize > 300000) {
+                alert("Please select an image file that is less than 100kb.");
+                e.preventDefault(); // prevent form submission
+            }
+        }
+    });
+</script>
 
 
 </html>

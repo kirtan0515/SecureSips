@@ -25,14 +25,16 @@
             <input type="text" id="search-bar" placeholder="Search products...">
             <button id="search-btn"><i class="fa fa-search"></i></button>
         </div>
-        <ul>
-            <li><a href="checkout">Shopping Cart</a></li>
-            <li><a href="#">My Account</a></li>
-            <li><a href="logout">Logout</a></li>
-        </ul>
-        <div class="hamburger">
-            <i class="fa fa-bars"></i>
-            <span class="cart-quantity">0</span>
+        <div class="menu-container">
+            <div class="hamburger">
+                <i class="fa fa-bars"></i>
+                <span class="cart-quantity">0</span>
+            </div>
+            <ul>
+                <li><a href="checkout">Shopping Cart</a></li>
+                <li><a href="#">My Account</a></li>
+                <li><a href="logout">Logout</a></li>
+            </ul>
         </div>
         <!-- Add this div to display the order review panel -->
         <div class="order-review-panel">
@@ -49,7 +51,7 @@
         e.printStackTrace();
     } %>
 
-<h1>Our Products</h1>
+<%--<h1>Our Products</h1>--%>
 <div>
     <div class="product-grid">
             <% for (Product product : products) { %>
