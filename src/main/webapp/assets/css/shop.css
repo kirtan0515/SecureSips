@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 @media screen and (max-width: 960px) {
     .product-grid {
@@ -63,6 +64,7 @@ a {
     color: antiquewhite;
     font-size: 16px;
     font-weight: 500;
+    font-family: 'Poppins', sans-serif;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -70,6 +72,8 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
 }
 
 .add-to-cart i {
@@ -79,19 +83,10 @@ a {
 
 .add-to-cart:hover {
     background: #ff9800;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
 }
 
-.badge {
-    position: absolute;
-    left: 0;
-    top: 20px;
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 700;
-    background: red;
-    color: #ffffff;
-    padding: 3px 10px;
-}
 
 .product-tumb {
     display: flex;
@@ -205,6 +200,11 @@ h1 {
     transform: translateY(-50%);
     font-size: 24px;
     color: #fff;
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+    color: #fbb72c;
 }
 
 .cart-quantity {
@@ -227,27 +227,50 @@ h1 {
     width: 300px;
     max-height: 80vh;
     overflow-y: auto;
-    background-color: #257ece;
+    background-color: #ffffff;
     border-left: 1px solid #dee2e6;
     padding: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 100;
+    transition: all 0.3s ease;
 }
 
 .order-review-panel h3 {
     font-weight: 500;
     margin-bottom: 16px;
+    color: #2a2a2a;
+    text-transform: uppercase;
 }
 
-.order-review-panel ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.order-review-panel .total-price {
+    font-weight: 600;
+    color: #fbb72c;
+}
+
+/* New CSS for table format */
+.order-review-panel table {
+    width: 100%;
+    border-collapse: collapse;
     margin-bottom: 16px;
 }
 
-.order-review-panel ul li {
-    margin-bottom: 8px;
+.order-review-panel th,
+.order-review-panel td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
 }
+
+.order-review-panel th {
+    font-weight: 500;
+    color: #2a2a2a;
+    text-transform: uppercase;
+}
+
+.order-review-panel td:last-child {
+    text-align: right;
+}
+
+
 
 

@@ -65,7 +65,9 @@
                 <p class="product-description"><%= product.getDescription() %></p>
                 <div class="product-bottom-details">
                     <div class="product-price">$<%= product.getPrice() %></div>
-                    <button class="add-to-cart" data-product-id="<%= product.getId() %>">Add to Cart</button>
+                    <button class="add-to-cart" data-product-id="<%= product.getId() %>">
+                    <i class="fa fa-shopping-cart"></i> Add to Cart
+                    </button>
                 </div>
             </div>
         </div>

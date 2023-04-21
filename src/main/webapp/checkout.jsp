@@ -30,6 +30,7 @@
             <input type="text" id="country" name="country" required>
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" required>
+            <form onsubmit="return false;"></form>
         </form>
     </div>
 
@@ -45,9 +46,48 @@
             <label for="cvv">CVV:</label>
             <input type="text" id="cvv" name="cvv" required>
             <button type="submit" class="submit-payment">Submit Payment</button>
+            <form onsubmit="return false;"></form>
         </form>
     </div>
 </div>
+<div id="alert-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="alert-message"></p>
+    </div>
+</div>
+
+<script src="./alert.js"></script>
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+        document.getElementById("alert-message").innerHTML = 'Thank you!<br>Your order is confirmed and it will ship between 3 to 5 business days.<br>Order Number: ' + generateOrderNumber();
+        showModal();
+    }
+
+    function generateOrderNumber() {
+        return Math.floor(Math.random() * 1000000);
+    }
+
+    function showModal() {
+        var modal = document.getElementById("alert-modal");
+        var span = document.getElementsByClassName("close")[0];
+
+        modal.style.display = "block";
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+
+    document.querySelector(".submit-payment").addEventListener("click", submitForm);
+</script>
 </body>
 </html>
 
