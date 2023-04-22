@@ -96,7 +96,7 @@ public class ProductDAO {
         return productList;
     }
 
-    public Product getProduct(int id) throws SQLException {
+    public static Product getProduct(int id) throws SQLException {
         System.out.println("ProductDAO (getProduct): requested");
         Connection connection = getConnection();
 

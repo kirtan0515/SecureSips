@@ -2,29 +2,6 @@ $(document).ready(function() {
     // Initialize the cart
     let cart = {};
 
-    function addToCartHandler() {
-        let productId = $(this).data('product-id');
-        let quantity = 1;
-        let price = parseFloat($(this).closest('.product-bottom-details').find('.product-price').text().substring(1));
-        let name = $(this).closest('.product-details').find('h4 a').text();
-
-        if (!cart[productId]) {
-            cart[productId] = {
-                name: name,
-                price: price,
-                quantity: 0
-            };
-        }
-
-        cart[productId].quantity += quantity;
-
-        updateCartQuantity();
-        updateOrderReviewPanel();
-    }
-
-    // Add event listener for the 'Add to cart' button
-    $('.add-to-cart').on('click', addToCartHandler);
-
     function updateCartQuantity() {
         let totalQuantity = 0;
         for (let productId in cart) {
@@ -75,7 +52,6 @@ $(document).ready(function() {
         $('.order-review-panel').toggle();
     });
 
-    // Add this function to filter the product cards
     function filterProductCards(searchText) {
         $('.product-card').each(function () {
             const productName = $(this).find('h4 a').text().toLowerCase();
@@ -87,7 +63,6 @@ $(document).ready(function() {
         });
     }
 
-    // Add these event listeners inside the $(document).ready() function
     $('#search-bar').on('input', function () {
         const searchText = $(this).val();
         filterProductCards(searchText);
@@ -113,10 +88,10 @@ $(document).ready(function() {
                 const productCard = $('<div>').addClass('product-card');
                 const productDetails = $('<div>').addClass('product-details');
                 const productImg = $('<img>').attr('src', product.image);
-                const productName = $('<h4>').html(`<a href="/products/${product.id}">${product.name}</a>`); // Fixed here
+                const productName = $('<h4>').html(`<a href="/products/${product.id}">${product.name}</a>`);
                 const productDescription = $('<p>').text(product.description);
                 const productBottomDetails = $('<div>').addClass('product-bottom-details');
-                const productPrice = $('<div>').addClass('product-price').text(`$${product.price.toFixed(2)}`); // Fixed here
+                const productPrice = $('<div>').addClass('product-price').text(`$${product.price.toFixed(2)}`);
                 const addToCartButton = $('<button>').addClass('add-to-cart').data('product-id', product.id).text('Add to Cart');
                 productDetails.append(productImg, productName, productDescription);
                 productBottomDetails.append(productPrice, addToCartButton);
@@ -125,31 +100,58 @@ $(document).ready(function() {
                 colDiv.append(productCard);
                 productsContainer.append(colDiv);
             }
+            ;
 
-            // Update the event listener for the 'Add to cart' button after appending new product cards
-            $('.add-to-cart').on('click', function () {
+            function addToCartHandler() {
                 let productId = $(this).data('product-id');
                 let quantity = 1;
                 let price = parseFloat($(this).closest('.product-bottom-details').find('.product-price').text().substring(1));
                 let name = $(this).closest('.product-details').find('h4 a').text();
 
-                if (!cart[productId]) {
-                    cart[productId] = {
-                        name: name,
+                console.log('Sending: productId=' + productId + ', quantity=' + quantity + ', price=' + price + ', name=' + name); // Added this line
+
+                // Send an AJAX request to the server to add the product to the cart
+                $.ajax({
+                    url: '/update-cart', // Replace with your servlet URL
+                    method: 'POST',
+                    data: {
+                        productId: productId,
+                        quantity: quantity,
                         price: price,
-                        quantity: 0
-                    };
-                }
+                        name: name
+                    },
+                    success: function (response) {
+                        console.log('Received response:', response);
+                        if (response.success) {
+                            // Update the cart object in the local JavaScript scope
+                            if (!cart[productId]) {
+                                cart[productId] = {
+                                    name: name,
+                                    price: price,
+                                    quantity: 0
+                                };
+                            }
+                            cart[productId].quantity += quantity;
 
-                cart[productId].quantity += quantity;
+                            // Update the cart quantity and order review panel
+                            updateCartQuantity();
+                            updateOrderReviewPanel();
+                        } else {
+                            // Show an error message
+                            console.error('Failed to add the product to the cart on the server');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error(`Failed to add the product to the cart: ${textStatus}, ${errorThrown}`);
+                    }
+                });
+            }
 
-                updateCartQuantity();
-                updateOrderReviewPanel();
-            });
+            // Update the event listener for the 'Add to cart' button after appending new product cards
+            $(document).on('click', '.add-to-cart', addToCartHandler);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error(`Failed to load products: ${textStatus}, ${errorThrown}`);
         }
     });
 });
-
